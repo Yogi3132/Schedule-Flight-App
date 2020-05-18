@@ -1,0 +1,51 @@
+<!--<form #form ="ngForm"  (ngSubmit)="form.valid && submitFindFlight(form)">
+    <div>
+        <label>Flight Number</label>
+        <div>
+            <label>Number</label>
+            <input type="number" name="flightnumber" ngModel #idCtrl=ngModel required minlength="2">
+            <div *ngIf="idCtrl.errors!=null && idCtrl.errors.required">
+                 id is required
+            </div>
+            <div *ngIf ="idCtrl.errors!=null && idCtrl.errors.minlength">
+                Min length should be 2
+            </div>
+        </div>
+    </div>
+
+    <button type="submit">Find Schedule</button>
+</form>
+<div *ngFor="let flight of scheduledFlights">
+    <br>flightnumber = {{flight.flightNumber}}
+    <br>sourceairport = {{flight.sourceAirport}}
+</div>
+-->
+
+
+<h1>Find Schedule By Flight Number</h1>
+<div  class="container">
+<form  #data="ngForm" (ngSubmit)="fetchByFlightNumber(data)">
+    <div>
+    <label>Enter Flight Number :</label> 
+    <input type="number" name="flightnumber" ngModel>
+    </div>
+    <input type="submit">
+    
+    </form>
+    
+    <div>
+    <h3>Found Schedule</h3>
+    <div *ngIf="foundStatus==='found'">
+    Flight Number={{foundSchedule.flightNumber}} ,
+    Source Airport={{foundSchedule.sourceAirport}} ,
+    Destination Airport={{foundSchedule.destinationAirport}} 
+    Arrival Time = {{foundSchedule.arrivalTime}} 
+    Departure Time = {{foundSchedule.departureTime}} 
+    Available Seats = {{foundSchedule.availableSeats}} 
+    </div>
+    
+    <div *ngIf="foundStatus=='notfound'">
+    Schedule not found !
+    </div>
+    
+    </div>
